@@ -12,7 +12,7 @@ class formule{
   NOT,
   OP_BINAIRE,
   VAR
-};
+  };
  protected:
     FORMULE_TYPE type;
     string form;

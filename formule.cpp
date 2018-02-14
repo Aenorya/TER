@@ -18,7 +18,7 @@ void formule::addform(formule f){
   }
 }
 void formule::print(){
-  cout<<form<<endl;
+  cout<<form;
 }
 void formule::printChildNodes(){
   cout<<"(";
@@ -29,7 +29,7 @@ void formule::printChildNodes(){
     lform[0].printChildNodes();
     this->print();
     lform[1].printChildNodes();
-  }else{
+  }else if (type==VAR){
     this->print();
   }
   cout<<")";
