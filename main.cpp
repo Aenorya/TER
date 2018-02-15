@@ -8,19 +8,14 @@
 #include "op_equ.h"
 int main(int argc, char** argv){
 
-  op_not *fn = new op_not();
-  var *fv = new var("s");
-  var *fv2 = new var("z");
-  op_or *fa = new op_or();
-  cout<<"ajout fv a fn"<<endl;
+  formule *fn = new op_not();
+  formule *fv = new var("s");
+  formule *fv2 = new var("z");
+  formule *fa = new op_and();
   fn->addform(*fv);
-  cout<<"ajout fn a fa "<< fa->getType()<<endl;
   fa->addform(*fn);
-  cout<<"ajout fv2 a fa"<<endl;
-
   fa->addform(*fv2);
-
   fa->printChildNodes();
-  
+
   
 }

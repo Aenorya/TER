@@ -21,17 +21,19 @@ void formule::print(){
   cout<<form;
 }
 void formule::printChildNodes(){
-  cout<<"(";
   if(type==NOT){
+    cout<<"(";
     this->print();
     lform[0].printChildNodes();
+    cout<<")";
   }else if (type==OP_BINAIRE){
+    cout<<"(";
     lform[0].printChildNodes();
     this->print();
     lform[1].printChildNodes();
+    cout<<")";
   }else if (type==VAR){
     this->print();
   }
-  cout<<")";
 }
 string formule::toString(){}

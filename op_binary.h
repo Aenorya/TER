@@ -10,12 +10,10 @@ class op_binary : public virtual formule{
   IMP,
   EQU
   };
- private:
+  op_binary(OP_TYPE);
+  virtual ~op_binary();
+ protected:
     OP_TYPE op_type;
-
- public:
-    op_binary();
-    op_binary(OP_TYPE);
-    virtual ~op_binary();
+    
 };
 #endif
