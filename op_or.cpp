@@ -2,6 +2,10 @@
 
 op_or::op_or():
   op_binary(OR){
-  form = "v";
+  form = "\\/";
 }
 op_or::~op_or(){}
+op_or::op_or(formule *ga,formule *dr):
+  op_binary(OR,ga,dr){
+  form="\\/";
+}

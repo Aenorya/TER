@@ -5,6 +5,10 @@
 class op_not : public virtual formule{
  public:
   op_not();
+  op_not(formule*);
   virtual ~op_not();
+  void printChildNodes();
+ protected:
+  formule *suiv;
 };
 #endif

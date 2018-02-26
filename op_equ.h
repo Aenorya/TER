@@ -9,6 +9,8 @@ class op_equ : public virtual op_binary{
  public:
   op_equ();
   virtual ~op_equ();
+    op_equ(formule*,formule*);
+
 
 };
 #endif

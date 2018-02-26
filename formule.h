@@ -16,15 +16,12 @@ class formule{
  protected:
     FORMULE_TYPE type;
     string form;
-    vector<formule> lform;
  public:
     formule();
     formule(FORMULE_TYPE);
     virtual ~formule();
     FORMULE_TYPE getType();
-    void addform(formule);
     void print();
-    void printChildNodes();
-    string toString();
+    virtual void printChildNodes();
 };
 #endif

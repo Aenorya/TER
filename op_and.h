@@ -8,6 +8,7 @@ class op_and : public virtual op_binary{
 
  public:
   op_and();
+  op_and(formule*,formule*);
   virtual ~op_and();
 
 };

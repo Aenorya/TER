@@ -8,13 +8,8 @@
 #include "op_equ.h"
 int main(int argc, char** argv){
 
-  formule *fn = new op_not();
-  formule *fv = new var("s");
-  formule *fv2 = new var("z");
-  formule *fa = new op_and();
-  fn->addform(*fv);
-  fa->addform(*fn);
-  fa->addform(*fv2);
+
+  formule *fa = new op_equ(new op_and(new op_not(new var("S")), new var("Z")),new op_imp(new op_or(new var ("Y"),new op_not(new var("S"))),new var("Y")));
   fa->printChildNodes();
 
   

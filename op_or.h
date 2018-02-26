@@ -8,6 +8,7 @@ public virtual op_binary{
  public:
   op_or();
   virtual ~op_or();
+  op_or(formule*,formule*);
 
 };
 #endif

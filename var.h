@@ -7,6 +7,6 @@ class var : public virtual formule{
  public:
   var(string);
   virtual ~var();
-
+  void printChildNodes();
 };
 #endif

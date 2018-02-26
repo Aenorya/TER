@@ -11,9 +11,15 @@ class op_binary : public virtual formule{
   EQU
   };
   op_binary(OP_TYPE);
+  op_binary(OP_TYPE,formule*,formule*);
   virtual ~op_binary();
+  formule* getG();
+  formule* getD();
  protected:
-    OP_TYPE op_type;
-    
+  OP_TYPE op_type;
+  formule *g;
+  formule *d;
+  void printChildNodes();
+  
 };
 #endif
