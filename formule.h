@@ -2,7 +2,6 @@
 #ifndef FORMULE_H
 #define FORMULE_H
 #include<string>
-#include<vector>
 #include<iostream>
 using namespace std;
 
