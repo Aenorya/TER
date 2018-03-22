@@ -15,6 +15,7 @@ class op_binary : public virtual formule{
   virtual ~op_binary();
   formule* getG();
   formule* getD();
+  OP_TYPE getOptype();
  protected:
   OP_TYPE op_type;
   formule *g;

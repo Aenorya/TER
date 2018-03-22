@@ -13,7 +13,7 @@ class sequent{
   sequent();
   sequent(vector<formule*>,vector<formule*>);
   virtual ~sequent();
-  sequent* ETdroit();
+  sequent* ETgauche();
   void affiche();
   
 };

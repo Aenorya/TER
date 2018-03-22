@@ -15,7 +15,8 @@ op_binary::op_binary(OP_TYPE t,formule *ga,formule *dr){
 
 formule* op_binary::getG(){ return g;}
 formule* op_binary::getD(){ return d;}
-						    
+OP_TYPE op_binary::getOptype(){ return op_type;}
+			    
 void op_binary::printChildNodes(){
     cout<<"(";
     g->printChildNodes();
