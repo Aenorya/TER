@@ -17,7 +17,7 @@ int yylex();
 void yyerror(string s);
 %}
 
-%token END_OF_FILE
+
 %token  VAR
 %token  NOT AND OR IMP EQU
 %token  PARENTHESE_GAUCHE PARENTHESE_DROITE
@@ -33,10 +33,7 @@ void yyerror(string s);
 
 Input:
     /* Vide */
-    END_OF_FILE
-  | //Input Ligne
-  | Ligne
-
+  | Input Ligne
   ;
 
 Ligne:
@@ -45,7 +42,7 @@ Ligne:
   ;
 
 Expression:
-    VAR      { $$=new var($1); }
+    VAR      { $$=$1; }
   | NOT Expression  { $$=new op_not($2); }
   | Expression AND Expression  { $$=new op_and($1,$3); }
   | Expression OR Expression { $$=new op_or($1,$3); }

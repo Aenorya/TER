@@ -24,10 +24,7 @@ var [A-Za-z]
 
 {blancs}  { /* On ignore */ }
 
-{var}   {
-          return(VAR);}
-
-<<EOF>>     return END_OF_FILE;
+{var}   {yylval= new var(strdup(yytext)); return(VAR);}
 
 "!"   return(NOT);
 
