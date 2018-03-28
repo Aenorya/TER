@@ -12,5 +12,15 @@ formule::FORMULE_TYPE formule::getType(){
 void formule::print(){
   cout<<form;
 }
-
+formule* formule::getG(){
+  return this;
+}
+formule* formule::getD(){
+  return this;
+}
+formule* formule::getSuiv(){
+  return this;
+}
 void formule::printChildNodes(){}
+
+

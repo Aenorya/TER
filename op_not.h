@@ -7,6 +7,7 @@ class op_not : public virtual formule{
   op_not();
   op_not(formule*);
   virtual ~op_not();
+  formule *getSuiv();
   void printChildNodes();
  protected:
   formule *suiv;

@@ -19,8 +19,13 @@ class formule{
     formule();
     formule(FORMULE_TYPE);
     virtual ~formule();
+    virtual formule* getD();
+    virtual formule* getG();
+    virtual formule* getSuiv();
     FORMULE_TYPE getType();
     void print();
     virtual void printChildNodes();
+    
 };
+
 #endif

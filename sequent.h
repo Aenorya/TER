@@ -13,7 +13,18 @@ class sequent{
   sequent();
   sequent(vector<formule*>,vector<formule*>);
   virtual ~sequent();
-  sequent* ETgauche();
+  vector<sequent*> ETgauche(int);
+  vector<sequent*> ETdroit(int);
+  vector<sequent*> OUgauche(int);
+  vector<sequent*> OUdroit(int);
+  vector<sequent*> IMPgauche(int);
+  vector<sequent*> IMPdroit(int);
+  vector<sequent*> EQUgauche1(int);
+  vector<sequent*> EQUgauche2(int);
+  vector<sequent*> EQUdroit(int);
+  vector<sequent*> NOTgauche(int);
+  vector<sequent*> NOTdroit(int);
+  
   void affiche();
   
 };
