@@ -7,6 +7,10 @@
 #include "op_imp.h"
 #include "op_equ.h"
 #include "sequent.h"
+#include "global.h"
+#include <iostream>
+#include <stdlib.h>
+#include "calc.h"
 
 int main(int argc, char** argv){
 
@@ -33,5 +37,15 @@ int main(int argc, char** argv){
   for(int i =0;i<s3.size();i++){
     s3[i]->affiche();
   }
+
+	cout<<"Laaaaaa"<<endl; 	
+	formule* f1 = new var("y");
+	yyparse(&f1);
+
+	cout << "adj" << endl;
+
+	f1->printChildNodes();
+	cout << "adj" << endl;
+
   
 }

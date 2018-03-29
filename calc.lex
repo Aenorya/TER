@@ -11,6 +11,7 @@
 #include "op_not.h"
 #include "var.h"
 #include <stdlib.h>
+#include <string.h>
 
 
 %}

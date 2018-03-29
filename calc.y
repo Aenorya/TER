@@ -14,9 +14,9 @@
 
 extern char* yytext;
 int yylex();
-void yyerror(string s);
+void yyerror(formule **f1, const char *msg);
 %}
-
+%parse-param {formule **f1} 
 
 %token  VAR
 %token  NOT AND OR IMP EQU
@@ -33,17 +33,19 @@ void yyerror(string s);
 
 Input:
     /* Vide */
+    %empty
   | Input Ligne
   ;
 
 Ligne:
-    FIN
-  | Expression FIN    { $1->printChildNodes(); }
+    FIN {}
+  | Expression FIN    { *f1 = $1; 
+						return 0; }
   ;
 
 Expression:
     VAR      { $$=$1; }
-  | NOT Expression  { $$=new op_not($2); }
+  | NOT Expression  { $$ =new op_not($2); }
   | Expression AND Expression  { $$=new op_and($1,$3); }
   | Expression OR Expression { $$=new op_or($1,$3); }
   | Expression IMP Expression  { $$=new op_imp($1,$3); }
@@ -53,12 +55,11 @@ Expression:
 
 %%
 
-void yyerror(string s) {
-  cout << s << endl;
-}
-
-extern int yyparse();
-int main(void) {
-  yyparse();
+void yyerror(formule **f1, const char *msg) {
 
 }
+
+extern int yyparse(formule **f1);
+
+
+
