@@ -7,17 +7,14 @@
 #include "op_imp.h"
 #include "op_equ.h"
 #include "sequent.h"
-#include "global.h"
-#include <iostream>
-#include <stdlib.h>
-#include "calc.h"
+#include "ArbrePreuve.h"
 
 int main(int argc, char** argv){
 
 
   formule *fa = new op_equ(new op_and(new op_not(new var("S")), new var("Z")),new op_imp(new op_or(new var ("Y"),new op_not(new var("S"))),new var("Y")));
-  fa->printChildNodes();
-  cout<<endl;
+  //fa->printChildNodes();
+  //cout<<endl;
 
   vector<formule*> ga;
   vector<formule*> dr;
@@ -29,23 +26,29 @@ int main(int argc, char** argv){
   dr.push_back(new op_equ(new op_and(new var("Q"),new var("Y")),new var ("Z"))); 
   
   sequent *s=new sequent(ga,dr);
-  s->affiche();
+  ArbrePreuve * a = new ArbrePreuve(s);
+  vector<ArbrePreuve*> aa;
+  aa.push_back(a);
+  for(int i =0;i<aa.size();i++){
+    cout<<" indice de l'abre :" << i<<endl;
+    aa[i]->afficher();
+   }
 
-  vector<sequent*> s3=s->NOTdroit(0);
+  while(1){
+    cout<<"Entrer l'indice de l'abre a développer :"<<endl;
+    int y;
+    cin>>y;
+    cout<<"Entrer l'indice de la formule a développer : "<< endl;
+    int x ;
+    cin >> x;
+    aa=aa[y]->developper(x);
+    cout<<"Après OP sur : "<<x<<endl;
+    for(int i =0;i<aa.size();i++){
+      cout<<" indice de l'abre :" << i<<endl;
+      aa[i]->afficher();
+   }
 
-  cout<<"Après OP"<<endl;
-  for(int i =0;i<s3.size();i++){
-    s3[i]->affiche();
+    
   }
-
-	cout<<"Laaaaaa"<<endl; 	
-	formule* f1 = new var("y");
-	yyparse(&f1);
-
-	cout << "adj" << endl;
-
-	f1->printChildNodes();
-	cout << "adj" << endl;
-
   
 }

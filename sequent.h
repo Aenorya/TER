@@ -24,7 +24,9 @@ class sequent{
   vector<sequent*> EQUdroit(int);
   vector<sequent*> NOTgauche(int);
   vector<sequent*> NOTdroit(int);
-  
+  vector<formule*> getGauche();
+    vector<formule*> getDroite();
+
   void affiche();
   
 };

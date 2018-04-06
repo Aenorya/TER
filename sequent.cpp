@@ -234,18 +234,30 @@ vector<sequent*> sequent::EQUdroit(int i){
   return v;
 }
 
+
+vector<formule*> sequent::getGauche(){
+  return gauche;
+}
+vector<formule*> sequent::getDroite(){
+  return droite;
+}
+
+
+
 void sequent::affiche(){
   for(int i = 0;i<gauche.size();i++){
     gauche[i]->printChildNodes();
+    cout<<"  ("<<i<<")  ";
     if(i != gauche.size() - 1){
-      cout<<" , ";
+      cout<<", ";
     }
   }
   cout << " |-- ";
   for(int i = 0;i<droite.size();i++){
     droite[i]->printChildNodes();
+    cout<<"  ("<<i+gauche.size()<<")  ";
     if(i != droite.size() - 1){
-      cout<<" , ";
+      cout<<", ";
     }else{
       cout<<endl;
     }

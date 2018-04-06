@@ -2,7 +2,7 @@
 #define OP_BINARY_H
 #include"formule.h"
 
-class op_binary : public virtual formule{
+class op_binary : public formule{
  public:
   enum OP_TYPE{
   AND,
