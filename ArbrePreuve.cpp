@@ -5,6 +5,11 @@ ArbrePreuve::ArbrePreuve(sequent * se){
   s=se;
 }
 ArbrePreuve::~ArbrePreuve(){}
+
+bool ArbrePreuve::estaxiome(){
+	return s->estaxiome();
+}
+
 void ArbrePreuve::afficher(){
   s->affiche();
   for(int i = 0;i<a.size();i++){

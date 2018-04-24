@@ -12,6 +12,7 @@ class ArbrePreuve {
   ArbrePreuve(sequent *);
   virtual ~ArbrePreuve();
   void afficher();
+bool estaxiome();
   vector<ArbrePreuve *> developper(int);
 };
 

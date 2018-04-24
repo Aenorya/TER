@@ -25,8 +25,8 @@ class sequent{
   vector<sequent*> NOTgauche(int);
   vector<sequent*> NOTdroit(int);
   vector<formule*> getGauche();
-    vector<formule*> getDroite();
-
+  vector<formule*> getDroite();
+	bool estaxiome();
   void affiche();
   
 };

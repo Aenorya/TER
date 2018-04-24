@@ -9,6 +9,21 @@ sequent::sequent(){}
 
 sequent::~sequent(){}
 
+bool sequent::estaxiome(){
+	int i=0,j=0;	
+	while(i<gauche.size()){
+		while(j<droite.size()){
+			if(gauche[i]->equal(droite[j])){
+				return true;
+			}
+			j++;
+		}
+		i++;	
+	}
+	
+	return false;
+}
+
 vector<sequent*> sequent::ETgauche(int i){
     vector<formule*> ng;
     for(int j = 0;j<gauche.size();j++){
@@ -133,14 +148,17 @@ vector<sequent*> sequent::IMPdroit(int i){
 
 vector<sequent*> sequent::IMPgauche(int i){
     vector<formule*> ng;
+	vector<formule*> ng2;
     vector<formule*> nd;
     vector<sequent*> v;
     for(int j = 0;j<gauche.size();j++){
-      if(i!=j){
-	ng.push_back(gauche[j]);
-      }else{
-	ng.push_back(gauche[j]->getD());
-      }
+    	if(i!=j){
+			ng2.push_back(gauche[j]);
+			ng.push_back(gauche[j]);	
+    	}else{
+			ng.push_back(gauche[j]->getD());
+				      
+		}
     }
     
     for(int j = 0;j<droite.size();j++){
@@ -148,7 +166,7 @@ vector<sequent*> sequent::IMPgauche(int i){
     }
     nd.push_back(gauche[i]->getG());
 
-    v.push_back(new sequent(gauche,nd));
+    v.push_back(new sequent(ng2,nd));
     v.push_back(new sequent(ng,droite));
     return v;
 }

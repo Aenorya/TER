@@ -22,9 +22,11 @@ class formule{
     virtual formule* getD();
     virtual formule* getG();
     virtual formule* getSuiv();
+	string getform();
     FORMULE_TYPE getType();
     void print();
     virtual void printChildNodes();
+	bool equal(formule*);
     
 };
 
