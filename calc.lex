@@ -19,7 +19,7 @@
 blancs    [ \t]+
 
 chiffre   [0-9]
-var [A-Z]
+var [a-zA-Z]
 
 %%
 

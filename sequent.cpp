@@ -9,8 +9,12 @@ sequent::sequent(){}
 
 sequent::~sequent(){}
 
+size_t sequent::longueur(){
+  return gauche.size() + droite.size();
+}
+
 bool sequent::estaxiome(){
-	int i=0,j=0;	
+	int i=0,j=0;
 	while(i<gauche.size()){
 		while(j<droite.size()){
 			if(gauche[i]->equal(droite[j])){
@@ -18,9 +22,10 @@ bool sequent::estaxiome(){
 			}
 			j++;
 		}
-		i++;	
+    j=0;
+		i++;
 	}
-	
+
 	return false;
 }
 
@@ -92,7 +97,7 @@ vector<sequent*> sequent::OUdroit(int i){
 }
 
 vector<sequent*> sequent::NOTgauche(int i){
-  
+
     vector<formule*> ng;
     vector<formule*> nd;
     for(int j = 0;j<gauche.size();j++){
@@ -154,13 +159,13 @@ vector<sequent*> sequent::IMPgauche(int i){
     for(int j = 0;j<gauche.size();j++){
     	if(i!=j){
 			ng2.push_back(gauche[j]);
-			ng.push_back(gauche[j]);	
+			ng.push_back(gauche[j]);
     	}else{
 			ng.push_back(gauche[j]->getD());
-				      
+
 		}
     }
-    
+
     for(int j = 0;j<droite.size();j++){
       nd.push_back(droite[j]);
     }
@@ -182,7 +187,7 @@ vector<formule*> ng;
 	ng.push_back(gauche[j]->getD());
       }
     }
-    
+
     for(int j = 0;j<droite.size();j++){
       nd.push_back(droite[j]);
     }
@@ -205,7 +210,7 @@ vector<formule*> ng;
 	ng.push_back(gauche[j]->getG());
       }
     }
-    
+
     for(int j = 0;j<droite.size();j++){
       nd.push_back(droite[j]);
     }
@@ -220,7 +225,7 @@ vector<sequent*> sequent::EQUdroit(int i){
   vector<formule*> ng;
   vector<formule*> nd;
   vector<sequent*> v;
-    
+
   for(int j = 0;j<droite.size();j++){
     if(i!=j){
       ng.push_back(droite[j]);
@@ -248,7 +253,7 @@ vector<sequent*> sequent::EQUdroit(int i){
   }
   nd2.push_back(droite[i]->getD());
   v.push_back(new sequent(nd2,ng2));
-    
+
   return v;
 }
 

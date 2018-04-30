@@ -28,6 +28,7 @@ class sequent{
   vector<formule*> getDroite();
 	bool estaxiome();
   void affiche();
+  size_t longueur();
   
 };
 #endif

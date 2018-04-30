@@ -7,13 +7,16 @@ class ArbrePreuve {
  protected:
   sequent* s;
   vector<ArbrePreuve*> a;
+  bool cloture;
  public:
   ArbrePreuve();
   ArbrePreuve(sequent *);
   virtual ~ArbrePreuve();
   void afficher();
-bool estaxiome();
-  vector<ArbrePreuve *> developper(int);
+  bool estaxiome();
+  bool estclos();
+  size_t longueurSequent();
+  vector<ArbrePreuve *> developper(size_t);
 };
 
 #endif

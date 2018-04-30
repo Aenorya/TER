@@ -11,17 +11,20 @@
 #include "calc.h"
 
 int main(int argc, char** argv){
-
-	cout<<"Entrer le nombre d'hypothese du séquent : "<<endl;
 	int nbh;
-	cin >> nbh;
+	do{
+
+		cout<<"Entrer le nombre d'hypothese du séquent : "<<endl;
+		cin >> nbh;
+		cout<<"------"<<nbh<<"-----"<<endl;
+	}while(nbh<=0);
 	vector<formule*> ga;
 	cout<<"Entrer les hypotheses : "<<endl;
 	for(int i =0;i<nbh;i++){
 		formule *fa;
 		yyparse(&fa);
 		ga.push_back(fa);
-	}	
+	}
 	cout<<"Entrer le nombre de conclusion du séquent : "<<endl;
 	int nbc;
 	cin >> nbc;
@@ -32,37 +35,56 @@ int main(int argc, char** argv){
 		yyparse(&fa);
 		dr.push_back(fa);
 	}
-	
-	
+
+
 	  sequent *s=new sequent(ga,dr);
 
-	  ArbrePreuve * a = new ArbrePreuve(s);
+	  ArbrePreuve * ArbreCourant = new ArbrePreuve(s);
 
 	  vector<ArbrePreuve*> aa;
+	  aa.push_back(ArbreCourant);
 
-	  aa.push_back(a);
-
-	  for(int i =0;i<aa.size();i++){
-	    cout<<"Indice de l'abre : (" << i <<")"<<endl;
+	  for(size_t i =0;i<aa.size();i++){
+	    cout<<"Indice de l'arbre : (" << i <<")"<<endl;
 	    aa[i]->afficher();
 	   }
+		 bool b;
 
-	  while(1){
-	    cout<<"Entrer l'indice de l'abre a développer :"<<endl;
-	    int y;
-	    cin>>y;
-	    cout<<"Entrer l'indice de la formule a développer : "<< endl;
-	    int x ;
-	    cin >> x;
-	    aa=aa[y]->developper(x);
+	  do{
+			vector<ArbrePreuve*> aNext;
+
+			size_t y;
+			size_t x;
+			do{
+				cout<<"Entrer l'indice de l'arbre a développer : "<<endl;
+				cin>>y;
+			}while(y>=aa.size());
+
+			do{
+	    	cout<<"Entrer l'indice de la formule a développer : "<< endl;
+	    	cin >> x;
+			}while(x>=aa[y]->longueurSequent());
+
+			ArbreCourant=aa[y];
+	    aNext=ArbreCourant->developper(x);
+			if(!aNext.empty()){
+				for(size_t i = 0; i < aNext.size();i++){
+					aa.push_back(aNext[i]);
+				}
+			}
 	    cout<<"Après OP sur : "<<x<<endl;
-	    for(int i =0;i<aa.size();i++){
-	    	cout<<"Indice de l'arbre : (" << i <<")"<<endl;
-	    	aa[i]->afficher();
-			if(aa[i]->estaxiome()){ cout<<"c'est un axiome"<<endl; }	    
-		}
+	    for(size_t i =0;i<aa.size();i++){
+	    	cout<<"Indice de l'arbre : (" << i <<")";
+				if(aa[i]->estclos()){cout<<", (clos)";}
+				if(aa[i]->estaxiome()){ cout<<", (axiome)"; }
+				cout<<endl;
+				aa[i]->afficher();
 
-	    
-	  }
-	  
-	}
+		}
+		b=true;
+		for(size_t i=0;i<aa.size();i++){
+			if(!aa[i]->estclos()){b=false;}
+		}
+		if(b){cout<<"Tout est clos !"<<endl;}
+	}	while(!b);
+}
