@@ -266,19 +266,30 @@ vector<formule*> sequent::getDroite(){
 }
 
 
+string getStringFromInt(int x){
+string res = "a";
+	if(x<26){
+		res = (char)x+97;		
+	} else {
+		res = (char)(x/26)+96;
+		res +=(char)(x%26)+97;
+	} 
+return res;
+}
 
 void sequent::affiche(){
+  
   for(int i = 0;i<gauche.size();i++){
     gauche[i]->printChildNodes();
-    cout<<"  ("<<i<<")  ";
+    cout<<"  ("<<getStringFromInt(i)<<")  ";
     if(i != gauche.size() - 1){
       cout<<", ";
     }
   }
-  cout << " |-- ";
+  cout <<" |= ";
   for(int i = 0;i<droite.size();i++){
     droite[i]->printChildNodes();
-    cout<<"  ("<<i+gauche.size()<<")  ";
+    cout<<"  ("<<getStringFromInt(i+gauche.size())<<")  ";
     if(i != droite.size() - 1){
       cout<<", ";
     }else{
@@ -286,3 +297,54 @@ void sequent::affiche(){
     }
   }
 }
+
+void sequent::afficheSansIndice(){
+  
+  for(int i = 0;i<gauche.size();i++){
+    gauche[i]->printChildNodes();
+    if(i != gauche.size() - 1){
+      cout<<", ";
+    }
+  }
+  cout <<" |= ";
+  for(int i = 0;i<droite.size();i++){
+    droite[i]->printChildNodes();
+    if(i != droite.size() - 1){
+      cout<<", ";
+    }else{
+     // cout<<endl;
+    }
+  }
+}
+
+
+void sequent::afficheHypotheses(){
+  for(int i = 0;i<gauche.size();i++){
+    gauche[i]->printChildNodes();
+    cout<<"  ("<<getStringFromInt(i)<<")  ";
+    if(i != gauche.size() - 1){
+      cout<<", ";
+    }
+  }
+cout<<'\t';
+}
+
+void sequent::afficheSeparateur(){
+cout<<" |= ";
+}
+
+void sequent::afficheConclusions(){
+  for(int i = 0;i<droite.size();i++){
+    droite[i]->printChildNodes();
+    cout<<"  ("<<getStringFromInt(i+gauche.size())<<")  ";
+    if(i != droite.size() - 1){
+      cout<<", ";
+    }else{
+      cout<<endl;
+    }
+	cout<<'\t';
+  }
+}
+
+
+

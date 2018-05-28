@@ -9,6 +9,7 @@ class sequent{
  protected:
   vector<formule*> gauche;
   vector<formule*> droite;
+  int hauteur;
  public:
   sequent();
   sequent(vector<formule*>,vector<formule*>);
@@ -28,6 +29,10 @@ class sequent{
   vector<formule*> getDroite();
 	bool estaxiome();
   void affiche();
+  void afficheSansIndice();
+  void afficheHypotheses();
+  void afficheSeparateur();
+  void afficheConclusions();
   size_t longueur();
   
 };

@@ -18,11 +18,87 @@ bool ArbrePreuve::estclos(){
 }
 void ArbrePreuve::afficher(){
   s->affiche();
-  /*for(size_t i = 0;i<a.size();i++){
-    a[i]->afficher();
-  }*/
 }
-vector<ArbrePreuve *> ArbrePreuve::developper(size_t i ){
+
+int ArbrePreuve::getHauteur(){
+	if(parent == NULL){
+		return 0;
+	}
+	return parent->getHauteur() +1;
+}
+
+int ArbrePreuve::getHauteurMax(){
+	for(int i = 0; i < a.size(); i++){
+		if(a.size() == 0){
+			return 1;
+		}
+		else {
+			return 1 + a[i]->getHauteurMax();
+		}
+	}
+
+}
+
+void ArbrePreuve::afficherParent(){
+  if(parent != NULL){
+    cout<<"\n-----------------------------------------"<<'\n';
+    parent->afficherSansIndice();
+  }
+}
+
+void ArbrePreuve::afficherSansIndice(){
+	s->afficheSansIndice();
+}
+void ArbrePreuve::afficherHypotheses(){
+  s->afficheHypotheses();
+}
+void ArbrePreuve::afficherSeparateur(){
+  s->afficheSeparateur();
+}
+void ArbrePreuve::afficherConclusions(){
+  s->afficheConclusions();
+}
+
+void ArbrePreuve::print(){
+	for(int i = 0; i < a.size(); i++) {
+		a[i]->print();
+	}
+
+	if(a.size() == 0) {
+		for(int i = 0; i < longueurSequent(); i++){
+			cout<<"\t";
+		}
+	}
+	if(a.size() > 0)cout<<endl;
+	for(int i = 0; i < a.size(); i++) {
+		for(int j = 0; j<a[i]->longueurSequent(); j++){
+			cout<<"-------";
+		}
+		cout<<"\t\t";
+	}
+
+	if(a.size() == 0) {
+		for(int i = 0; i < longueurSequent(); i++){
+			cout<<"\t";
+		}
+	}
+	if(a.size()!=0)cout<<endl;
+	for(int i = 0; i < a.size(); i++) {
+		a[i]->s->afficheSansIndice();
+		cout<<"\t\t";
+	}
+
+}
+
+void ArbrePreuve::printAll(){
+	print();
+	cout<<"\n----------------------------------------------------------------------\n";
+	afficherSansIndice();
+	cout<<"\n\n";
+
+}
+
+vector<ArbrePreuve *> ArbrePreuve::developper(size_t i){
   if(cloture){
     return a;
   }
@@ -80,7 +156,15 @@ vector<ArbrePreuve *> ArbrePreuve::developper(size_t i ){
      a.push_back(new ArbrePreuve(se[x]));
   }
 
+  for(int i=0; i<a.size();i++){
+     a[i]->parent = this;
+}
+
       if(!a.empty()){cloture=true;}
      return a;
 
   }
+
+ArbrePreuve* ArbrePreuve::getParent(){
+	return this->parent;
+}
